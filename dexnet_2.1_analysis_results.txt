@@ -1,0 +1,94 @@
+Analyzing Dex-Net 2.1 dataset...
+Dataset contains 34804 samples across 35 files
+
+=== Grasp Quality Metrics ===
+Mean metric value: 0.002200
+Median metric value: 0.001623
+Min metric value: 0.000000
+Max metric value: 0.020383
+Standard deviation: 0.002549
+
+=== Grasp Quality Percentiles ===
+10th percentile: 0.000000
+25th percentile: 0.000000
+50th percentile: 0.001623
+75th percentile: 0.003421
+90th percentile: 0.005482
+95th percentile: 0.007179
+99th percentile: 0.010743
+
+=== Label Distribution ===
+Positive samples (grasp quality > 0.002): 4758 (47.58%)
+Negative samples (grasp quality <= 0.002): 5242 (52.42%)
+
+Match between original labels and derived labels: 92.92%
+
+=== Binary Classification Metrics ===
+True Positives: 4050
+True Negatives: 5242
+False Positives: 708
+False Negatives: 0
+Precision: 0.8512
+Recall (Sensitivity): 1.0000
+Specificity: 0.8810
+F1 Score: 0.9196
+Accuracy: 0.9292
+
+=== Grasp Parameters Statistics ===
+
+>> Depth Distribution (meters) <<
+Mean: 0.6847
+Median: 0.6854
+Min: 0.5404
+Max: 0.7678
+Std Dev: 0.0324
+
+>> Axis Angle Distribution (radians) <<
+Mean: 3.1290
+Median: 3.1459
+Min: 0.0007
+Max: 6.2830
+Std Dev: 1.8233
+
+>> Approach Angle Distribution (radians) <<
+Mean: -0.0002
+Median: -0.0006
+Min: -0.0497
+Max: 0.0497
+Std Dev: 0.0283
+
+>> Width Distribution (pixels) <<
+Mean: 38.4306
+Median: 38.0000
+Min: 34.0000
+Max: 49.0000
+Std Dev: 1.8718
+
+=== Correlation Analysis ===
+Correlation between depth and quality: -0.0960
+Correlation between axis angle and quality: 0.0012
+Correlation between approach angle and quality: -0.0046
+Correlation between width and quality: 0.0936
+
+ROC AUC: 0.9391
+
+Comprehensive visualization saved as 'dexnet_2.1_comprehensive_analysis.png'
+Parameter relationship plots saved as 'dexnet_2.1_parameter_relationships.png'
+
+=== Model Performance Estimates ===
+Based on Dex-Net 2.1 literature:
+- Success rate: Approximately 93% on known objects
+- Planning time: ~1.67 seconds per grasp plan
+- Network inference time: ~0.10-0.55 seconds
+- 3x faster than registration-based methods
+- Precision on novel objects: ~100%
+
+=== Threshold Analysis ===
+Threshold | Precision | Recall  | F1 Score | Accuracy
+----------|-----------|---------|----------|----------
+0.0005  | 0.6552    | 1.0000  | 0.7917    | 0.7869
+0.0010  | 0.7336    | 1.0000  | 0.8463    | 0.8529
+0.0020  | 0.8512    | 1.0000  | 0.9196    | 0.9292
+0.0050  | 0.8512    | 0.2543  | 0.3916    | 0.6800
+0.0100  | 0.8581    | 0.0328  | 0.0633    | 0.6061
+0.0200  | 1.0000    | 0.0002  | 0.0005    | 0.5951
