@@ -25,3 +25,8 @@ Please see the [docs](https://berkeleyautomation.github.io/gqcnn/) for installat
 ## Citation
 If you use any part of this code in a publication, please cite [the appropriate Dex-Net publication](https://berkeleyautomation.github.io/gqcnn/index.html#academic-use).
 
+
+
+## To run eval script 
+python .\evaluate_dexnet.py
+
