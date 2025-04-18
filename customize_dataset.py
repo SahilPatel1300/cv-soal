@@ -87,7 +87,7 @@ class DexNetNPZDatasetAll(Dataset):
         )
 
         # Slice only desired pose dimensions
-        #pose = pose[self.pose_dims]
+        pose = pose[self.pose_dims]
 
         # Prepare depth image: (1, 32, 32) → (3, 32, 32)
         depth = np.expand_dims(depth, axis=0)
