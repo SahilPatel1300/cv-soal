@@ -1,6 +1,6 @@
 === GQCNN Model Evaluation: GQCNN-2.1 ===
 Dataset path: data/training/dex-net_2.1/dexnet_2.1_eps_50/tensors
-Timestamp: 2025-04-18 16:07:06
+Timestamp: 2025-04-18 16:20:40
 
 Found 35 tensor files
 
