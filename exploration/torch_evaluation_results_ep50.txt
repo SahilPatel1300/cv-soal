@@ -1,0 +1,88 @@
+=== PyTorch Model Evaluation ===
+Dataset path: ../../dexnet_2.1/dexnet_2.1_eps_50/tensors/
+Timestamp: 2025-04-20 16:18:09
+
+Using device: cpu
+Found 35 tensor files
+
+Processing 2 files...
+
+Processing file 1/2...
+File contains 1000 samples
+Running inference on 32 batches...
+Processed 1000 samples from file 1
+
+Processing file 2/2...
+File contains 1000 samples
+Running inference on 32 batches...
+Processed 1000 samples from file 2
+
+===============================================
+1. BASIC STATISTICS
+===============================================
+Total samples evaluated: 2000
+Positive samples: 837 (41.85%)
+Negative samples: 1163 (58.15%)
+
+>> Prediction Score Distribution <<
+Mean prediction: 0.5940
+Median prediction: 0.7382
+Standard deviation: 0.3465
+Min prediction: 0.0000
+Max prediction: 0.9995
+25th percentile: 0.2328
+75th percentile: 0.8845
+
+===============================================
+2. CLASSIFICATION METRICS (at threshold=0.5)
+===============================================
+True Positives: 829 - (Correct positive predictions)
+True Negatives: 640 - (Correct negative predictions)
+False Positives: 523 - (Type I error; predicted positive but actually negative)
+False Negatives: 8 - (Type II error; predicted negative but actually positive)
+
+>> Standard Classification Metrics <<
+Accuracy: 0.7345 - (Proportion of correct predictions)
+Precision: 0.6132 - (TP/(TP+FP); proportion of positive predictions that are correct)
+Recall/Sensitivity: 0.9904 - (TP/(TP+FN); proportion of actual positives correctly identified)
+Specificity: 0.5503 - (TN/(TN+FP); proportion of actual negatives correctly identified)
+F1 Score: 0.7574 - (Harmonic mean of precision and recall)
+Balanced Accuracy: 0.7704 - (Average of recall and specificity)
+
+===============================================
+3. THRESHOLD OPTIMIZATION
+===============================================
+Optimal threshold (maximizing F1): 0.6821
+F1 score at optimal threshold: 0.8116
+
+>> Metrics at Optimal Threshold <<
+Accuracy: 0.8150
+Precision: 0.7083
+Recall/Sensitivity: 0.9486
+Specificity: 0.7188
+
+===============================================
+4. RANKING & DISCRIMINATION METRICS
+===============================================
+ROC AUC: 0.8954 - (Area under ROC curve; probability that a random positive is ranked higher than a random negative)
+PR AUC (Average Precision): 0.8053 - (Area under precision-recall curve; summary of precision at different recall levels)
+Log Loss: 0.5177 - (Cross-entropy loss; lower is better)
+
+===============================================
+5. REGRESSION METRICS (comparing with ground truth grasp metrics)
+===============================================
+Pearson correlation: 0.5129 - (Linear correlation; -1 to 1)
+Spearman rank correlation: 0.6243 - (Monotonic relationship; -1 to 1)
+Mean Absolute Error: 0.5918 - (Average absolute difference)
+Root Mean Squared Error: 0.6851 - (Square root of average squared difference; penalizes large errors)
+R-squared: -71047.5919 - (Proportion of variance explained; 0 to 1)
+
+===============================================
+6. VISUALIZATION SUMMARY
+===============================================
+Generated visualizations:
+  1. prediction_distribution.png
+  2. roc_curve.png
+  3. pr_curve.png
+  4. pred_vs_truth_scatter.png
+  5. confusion_matrix.png
