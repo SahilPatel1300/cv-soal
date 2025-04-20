@@ -15,7 +15,6 @@ import torch.nn.functional as F
 from torch.utils.data import DataLoader, random_split
 import torch.optim as optim
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from torch.amp import GradScaler, autocast
 
 # Define all categories and their shape descriptions
 categories = {
