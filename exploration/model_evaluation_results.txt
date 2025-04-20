@@ -1,0 +1,83 @@
+=== PyTorch Model Evaluation ===
+Dataset path: ../../dexnet_2.1/dexnet_2.1_eps_10/tensors/
+Timestamp: 2025-04-20 19:21:09
+
+Using device: cuda
+Found 17 tensor files
+
+Processing 2 files...
+
+Processing file 1/2...
+File contains 1000 samples
+Running inference on 32 batches...
+Error during inference on batch 0: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 1: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 2: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 3: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 4: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 5: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 6: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 7: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 8: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 9: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 10: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 11: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 12: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 13: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 14: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 15: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 16: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 17: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 18: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 19: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 20: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 21: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 22: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 23: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 24: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 25: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 26: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 27: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 28: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 29: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 30: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 31: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [8, 1, 32, 32, 1]
+Processed 0 samples from file 1
+
+Processing file 2/2...
+File contains 1000 samples
+Running inference on 32 batches...
+Error during inference on batch 0: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 1: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 2: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 3: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 4: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 5: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 6: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 7: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 8: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 9: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 10: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 11: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 12: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 13: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 14: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 15: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 16: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 17: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 18: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 19: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 20: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 21: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 22: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 23: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 24: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 25: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 26: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 27: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 28: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 29: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 30: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [32, 1, 32, 32, 1]
+Error during inference on batch 31: Expected 3D (unbatched) or 4D (batched) input to conv2d, but got input of size: [8, 1, 32, 32, 1]
+Processed 0 samples from file 2
+No prediction data was generated. Check for errors in batch processing.
