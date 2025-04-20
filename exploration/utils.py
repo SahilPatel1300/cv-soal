@@ -133,6 +133,7 @@ def evaluate_accuracy(model, dataloader, device, threshold=0.5):
             labels = labels.to(device, non_blocking=True).unsqueeze(1)
 
             outputs = model(images, poses)
+            outputs = torch.sigmoid(outputs)
             predictions = (outputs >= threshold).float()  # binary threshold
             correct += (predictions == labels).sum().item()
             total += labels.size(0)
