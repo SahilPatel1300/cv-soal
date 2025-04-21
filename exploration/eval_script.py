@@ -2,7 +2,7 @@ import numpy as np
 import os
 import glob
 import matplotlib.pyplot as plt
-from sklearn.metrics import (precision_recall_curve, average_precision_score, 
+from sklearn.metrics import (precision_recall_curve, average_precision_score,
                              confusion_matrix, roc_curve, auc, log_loss)
 from scipy.stats import spearmanr
 import time
@@ -18,7 +18,8 @@ def run_model_evaluation(model,
                         output_file="torch_evaluation_results.txt",
                         visualizations_dir="torch_evaluation_plots",
                         pose_dims=[2],
-                        use_regression=False):
+                        use_regression=False,
+                        num_files=2):
     """
     Evaluates your PyTorch model on the Dex-Net dataset with comprehensive metrics.
     """
@@ -42,6 +43,12 @@ def run_model_evaluation(model,
     print(f"Using device: {device}")
     
     # Find all tensor files
+    # The experiment directory
+    # depth_files = sorted(glob.glob(os.path.join(tensor_dir, "depth_ims_tf_*.npz")))
+    # hand_pose_files = sorted(glob.glob(os.path.join(tensor_dir, "hand_poses_*.npz")))
+    # label_files = sorted(glob.glob(os.path.join(tensor_dir, "human_label_*.npz")))
+    
+    # The normal directories
     depth_files = sorted(glob.glob(os.path.join(tensor_dir, "depth_ims_tf_table_*.npz")))
     hand_pose_files = sorted(glob.glob(os.path.join(tensor_dir, "hand_poses_*.npz")))
     label_files = sorted(glob.glob(os.path.join(tensor_dir, "labels_*.npz")))
@@ -59,7 +66,7 @@ def run_model_evaluation(model,
     print(f"Found {len(depth_files)} tensor files")
     
     # Set number of files to process
-    max_files_to_process = min(2, len(depth_files))  # Start with just 2 files
+    max_files_to_process = min(num_files, len(depth_files))  # Start with just 2 files
     
     # Initialize arrays for metrics
     all_predictions = []
@@ -93,7 +100,6 @@ def run_model_evaluation(model,
         
         # Process in batches
         num_batches = (num_samples + batch_size - 1) // batch_size
-        
         file_predictions = []
         
         output_lines.append(f"Running inference on {num_batches} batches...")
@@ -108,8 +114,8 @@ def run_model_evaluation(model,
             batch_images = depth_images[start_idx:end_idx]
 
             # Use specified pose dimensions
-            selected_pose_dims = [dim for dim in pose_dims if dim < hand_poses.shape[1]]
-            batch_poses = hand_poses[start_idx:end_idx][:, selected_pose_dims]
+            # selected_pose_dims = [dim for dim in pose_dims if dim < hand_poses.shape[1]]
+            batch_poses = hand_poses[start_idx:end_idx][:, pose_dims]
 
             # Robust reshaping logic
             if batch_images.ndim == 5 and batch_images.shape[1] == 1 and batch_images.shape[-1] == 1:
@@ -148,14 +154,10 @@ def run_model_evaluation(model,
         all_ground_truth.extend(truth_labels.tolist())
         all_metrics.extend(truth_metrics.tolist())
         
-        
-
-
-
     # Convert to numpy arrays
     all_predictions = np.array(all_predictions)
     all_ground_truth = np.array(all_ground_truth)
-    all_metrics = np.array(all_metrics)
+    all_metrics = np.array(all_metrics) if all_metrics else np.zeros_like(all_ground_truth) 
     
     # Check if we have enough data
     if len(all_predictions) == 0:
@@ -284,31 +286,32 @@ def run_model_evaluation(model,
     #############################################################
     # 5. COMPARE MODEL PREDICTIONS WITH GROUND TRUTH METRICS
     #############################################################
-    output_lines.append("\n===============================================")
-    output_lines.append("5. REGRESSION METRICS (comparing with ground truth grasp metrics)")
-    output_lines.append("===============================================")
-    
-    # Pearson correlation
-    pearson_corr = np.corrcoef(all_predictions, all_metrics)[0, 1]
-    output_lines.append(f"Pearson correlation: {pearson_corr:.4f} - (Linear correlation; -1 to 1)")
-    
-    # Spearman rank correlation
-    spearman_corr, _ = spearmanr(all_predictions, all_metrics)
-    output_lines.append(f"Spearman rank correlation: {spearman_corr:.4f} - (Monotonic relationship; -1 to 1)")
-    
-    # Mean Absolute Error
-    mae = np.mean(np.abs(all_predictions - all_metrics))
-    output_lines.append(f"Mean Absolute Error: {mae:.4f} - (Average absolute difference)")
-    
-    # Root Mean Squared Error
-    rmse = np.sqrt(np.mean(np.square(all_predictions - all_metrics)))
-    output_lines.append(f"Root Mean Squared Error: {rmse:.4f} - (Square root of average squared difference; penalizes large errors)")
-    
-    # R-squared
-    ss_tot = np.sum((all_metrics - np.mean(all_metrics))**2)
-    ss_res = np.sum((all_metrics - all_predictions)**2)
-    r_squared = 1 - (ss_res / ss_tot) if ss_tot > 0 else 0
-    output_lines.append(f"R-squared: {r_squared:.4f} - (Proportion of variance explained; 0 to 1)")
+    if use_regression:
+        output_lines.append("\n===============================================")
+        output_lines.append("5. REGRESSION METRICS (comparing with ground truth grasp metrics)")
+        output_lines.append("===============================================")
+        
+        # Pearson correlation
+        pearson_corr = np.corrcoef(all_predictions, all_metrics)[0, 1]
+        output_lines.append(f"Pearson correlation: {pearson_corr:.4f} - (Linear correlation; -1 to 1)")
+        
+        # Spearman rank correlation
+        spearman_corr, _ = spearmanr(all_predictions, all_metrics)
+        output_lines.append(f"Spearman rank correlation: {spearman_corr:.4f} - (Monotonic relationship; -1 to 1)")
+        
+        # Mean Absolute Error
+        mae = np.mean(np.abs(all_predictions - all_metrics))
+        output_lines.append(f"Mean Absolute Error: {mae:.4f} - (Average absolute difference)")
+        
+        # Root Mean Squared Error
+        rmse = np.sqrt(np.mean(np.square(all_predictions - all_metrics)))
+        output_lines.append(f"Root Mean Squared Error: {rmse:.4f} - (Square root of average squared difference; penalizes large errors)")
+        
+        # R-squared
+        ss_tot = np.sum((all_metrics - np.mean(all_metrics))**2)
+        ss_res = np.sum((all_metrics - all_predictions)**2)
+        r_squared = 1 - (ss_res / ss_tot) if ss_tot > 0 else 0
+        output_lines.append(f"R-squared: {r_squared:.4f} - (Proportion of variance explained; 0 to 1)")
     
     #############################################################
     # 6. VISUALIZATIONS
@@ -319,23 +322,23 @@ def run_model_evaluation(model,
     
     # Save paths for all visualizations
     viz_paths = []
-    
-    # Figure 1: Prediction Distribution
-    plt.figure(figsize=(10, 6))
-    plt.hist(all_predictions, bins=50, alpha=0.7, label='Model Predictions', color='blue')
-    plt.hist(all_metrics, bins=50, alpha=0.4, label='Ground Truth Metrics', color='green')
-    plt.axvline(x=0.5, color='r', linestyle='--', label='Default Threshold (0.5)')
-    plt.axvline(x=optimal_threshold, color='purple', linestyle='--', label=f'Optimal Threshold ({optimal_threshold:.3f})')
-    plt.axvline(x=0.002, color='orange', linestyle='--', label='Dex-Net Metric Threshold (0.002)')
-    plt.xlabel('Quality Score')
-    plt.ylabel('Frequency')
-    plt.title('Distribution of Predictions vs Ground Truth')
-    plt.legend()
-    plt.grid(alpha=0.3)
-    
-    fig1_path = os.path.join(visualizations_dir, 'prediction_distribution.png')
-    plt.savefig(fig1_path, dpi=300, bbox_inches='tight')
-    viz_paths.append(fig1_path)
+    if use_regression:
+        # Figure 1: Prediction Distribution
+        plt.figure(figsize=(10, 6))
+        plt.hist(all_predictions, bins=50, alpha=0.7, label='Model Predictions', color='blue')
+        plt.hist(all_metrics, bins=50, alpha=0.4, label='Ground Truth Metrics', color='green')
+        plt.axvline(x=0.5, color='r', linestyle='--', label='Default Threshold (0.5)')
+        plt.axvline(x=optimal_threshold, color='purple', linestyle='--', label=f'Optimal Threshold ({optimal_threshold:.3f})')
+        plt.axvline(x=0.002, color='orange', linestyle='--', label='Dex-Net Metric Threshold (0.002)')
+        plt.xlabel('Quality Score')
+        plt.ylabel('Frequency')
+        plt.title('Distribution of Predictions vs Ground Truth')
+        plt.legend()
+        plt.grid(alpha=0.3)
+        
+        fig1_path = os.path.join(visualizations_dir, 'prediction_distribution.png')
+        plt.savefig(fig1_path, dpi=300, bbox_inches='tight')
+        viz_paths.append(fig1_path)
     
     # Figure 2: ROC Curve
     plt.figure(figsize=(10, 6))
@@ -371,24 +374,24 @@ def run_model_evaluation(model,
     viz_paths.append(fig3_path)
     
     # Figure 4: Predictions vs Ground Truth Scatter
-    plt.figure(figsize=(10, 6))
-    plt.scatter(all_metrics, all_predictions, alpha=0.3, s=20, color='blue')
-    
-    # Add regression line
-    z = np.polyfit(all_metrics, all_predictions, 1)
-    p = np.poly1d(z)
-    plt.plot(sorted(all_metrics), p(sorted(all_metrics)), "r--", linewidth=2, 
-             label=f'Linear Fit (y = {z[0]:.2f}x + {z[1]:.2f})')
-    
-    plt.xlabel('Ground Truth Metric')
-    plt.ylabel('Model Prediction')
-    plt.title(f'Predictions vs Ground Truth (Pearson r = {pearson_corr:.3f})')
-    plt.grid(alpha=0.3)
-    plt.legend()
-    
-    fig4_path = os.path.join(visualizations_dir, 'pred_vs_truth_scatter.png')
-    plt.savefig(fig4_path, dpi=300, bbox_inches='tight')
-    viz_paths.append(fig4_path)
+    if use_regression:
+        plt.figure(figsize=(10, 6))
+        plt.scatter(all_metrics, all_predictions, alpha=0.3, s=20, color='blue')
+        # Add regression line
+        z = np.polyfit(all_metrics, all_predictions, 1)
+        p = np.poly1d(z)
+        plt.plot(sorted(all_metrics), p(sorted(all_metrics)), "r--", linewidth=2, 
+                label=f'Linear Fit (y = {z[0]:.2f}x + {z[1]:.2f})')
+        
+        plt.xlabel('Ground Truth Metric')
+        plt.ylabel('Model Prediction')
+        plt.title(f'Predictions vs Ground Truth (Pearson r = {pearson_corr:.3f})')
+        plt.grid(alpha=0.3)
+        plt.legend()
+        
+        fig4_path = os.path.join(visualizations_dir, 'pred_vs_truth_scatter.png')
+        plt.savefig(fig4_path, dpi=300, bbox_inches='tight')
+        viz_paths.append(fig4_path)
     
     # Figure 5: Confusion Matrix Heatmap
     plt.figure(figsize=(8, 6))

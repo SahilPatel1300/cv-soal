@@ -1,88 +1,92 @@
 === PyTorch Model Evaluation ===
 Dataset path: ../../dexnet_2.1/dexnet_2.1_eps_10/tensors/
-Timestamp: 2025-04-20 16:11:14
+Timestamp: 2025-04-21 02:41:30
 
-Using device: cpu
+Using device: cuda
 Found 17 tensor files
 
-Processing 2 files...
+Processing 5 files...
 
-Processing file 1/2...
+Processing file 1/5...
 File contains 1000 samples
 Running inference on 32 batches...
 Processed 1000 samples from file 1
 
-Processing file 2/2...
+Processing file 2/5...
 File contains 1000 samples
 Running inference on 32 batches...
 Processed 1000 samples from file 2
 
+Processing file 3/5...
+File contains 1000 samples
+Running inference on 32 batches...
+Processed 1000 samples from file 3
+
+Processing file 4/5...
+File contains 1000 samples
+Running inference on 32 batches...
+Processed 1000 samples from file 4
+
+Processing file 5/5...
+File contains 1000 samples
+Running inference on 32 batches...
+Processed 1000 samples from file 5
+
 ===============================================
 1. BASIC STATISTICS
 ===============================================
-Total samples evaluated: 2000
-Positive samples: 1700 (85.00%)
-Negative samples: 300 (15.00%)
+Total samples evaluated: 5000
+Positive samples: 4264 (85.28%)
+Negative samples: 736 (14.72%)
 
 >> Prediction Score Distribution <<
-Mean prediction: 0.8016
-Median prediction: 0.8752
-Standard deviation: 0.2201
+Mean prediction: 0.5901
+Median prediction: 0.6563
+Standard deviation: 0.2302
 Min prediction: 0.0000
-Max prediction: 0.9985
-25th percentile: 0.7707
-75th percentile: 0.9328
+Max prediction: 0.9965
+25th percentile: 0.5570
+75th percentile: 0.7362
 
 ===============================================
 2. CLASSIFICATION METRICS (at threshold=0.5)
 ===============================================
-True Positives: 1692 - (Correct positive predictions)
-True Negatives: 153 - (Correct negative predictions)
-False Positives: 147 - (Type I error; predicted positive but actually negative)
-False Negatives: 8 - (Type II error; predicted negative but actually positive)
+True Positives: 3822 - (Correct positive predictions)
+True Negatives: 582 - (Correct negative predictions)
+False Positives: 154 - (Type I error; predicted positive but actually negative)
+False Negatives: 442 - (Type II error; predicted negative but actually positive)
 
 >> Standard Classification Metrics <<
-Accuracy: 0.9225 - (Proportion of correct predictions)
-Precision: 0.9201 - (TP/(TP+FP); proportion of positive predictions that are correct)
-Recall/Sensitivity: 0.9953 - (TP/(TP+FN); proportion of actual positives correctly identified)
-Specificity: 0.5100 - (TN/(TN+FP); proportion of actual negatives correctly identified)
-F1 Score: 0.9562 - (Harmonic mean of precision and recall)
-Balanced Accuracy: 0.7526 - (Average of recall and specificity)
+Accuracy: 0.8808 - (Proportion of correct predictions)
+Precision: 0.9613 - (TP/(TP+FP); proportion of positive predictions that are correct)
+Recall/Sensitivity: 0.8963 - (TP/(TP+FN); proportion of actual positives correctly identified)
+Specificity: 0.7908 - (TN/(TN+FP); proportion of actual negatives correctly identified)
+F1 Score: 0.9277 - (Harmonic mean of precision and recall)
+Balanced Accuracy: 0.8436 - (Average of recall and specificity)
 
 ===============================================
 3. THRESHOLD OPTIMIZATION
 ===============================================
-Optimal threshold (maximizing F1): 0.4874
-F1 score at optimal threshold: 0.9571
+Optimal threshold (maximizing F1): 0.1957
+F1 score at optimal threshold: 0.9624
 
 >> Metrics at Optimal Threshold <<
-Accuracy: 0.9235
-Precision: 0.9202
-Recall/Sensitivity: 0.9965
-Specificity: 0.5100
+Accuracy: 0.9342
+Precision: 0.9412
+Recall/Sensitivity: 0.9843
+Specificity: 0.6440
 
 ===============================================
 4. RANKING & DISCRIMINATION METRICS
 ===============================================
-ROC AUC: 0.8996 - (Area under ROC curve; probability that a random positive is ranked higher than a random negative)
-PR AUC (Average Precision): 0.9743 - (Area under precision-recall curve; summary of precision at different recall levels)
-Log Loss: 0.2528 - (Cross-entropy loss; lower is better)
-
-===============================================
-5. REGRESSION METRICS (comparing with ground truth grasp metrics)
-===============================================
-Pearson correlation: 0.4152 - (Linear correlation; -1 to 1)
-Spearman rank correlation: 0.3802 - (Monotonic relationship; -1 to 1)
-Mean Absolute Error: 0.7979 - (Average absolute difference)
-Root Mean Squared Error: 0.8274 - (Square root of average squared difference; penalizes large errors)
-R-squared: -94950.7178 - (Proportion of variance explained; 0 to 1)
+ROC AUC: 0.9025 - (Area under ROC curve; probability that a random positive is ranked higher than a random negative)
+PR AUC (Average Precision): 0.9750 - (Area under precision-recall curve; summary of precision at different recall levels)
+Log Loss: 0.4478 - (Cross-entropy loss; lower is better)
 
 ===============================================
 6. VISUALIZATION SUMMARY
 ===============================================
 Generated visualizations:
-  1. prediction_distribution.png
-  2. roc_curve.png
-  3. pr_curve.png
-  4. pred_vs_truth_scatter.png
-  5. confusion_matrix.png
+  1. roc_curve.png
+  2. pr_curve.png
+  3. confusion_matrix.png
