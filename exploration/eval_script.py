@@ -426,6 +426,21 @@ def run_model_evaluation(model,
     plt.savefig(fig5_path, dpi=300, bbox_inches='tight')
     viz_paths.append(fig5_path)
     
+    # Figure 6: Optimal Confusion Matrix Heatmap
+    plt.figure(figsize=(8, 6))
+    cm = confusion_matrix(all_ground_truth, binary_predictions_optimal)
+    
+    # Create heatmap
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
+    plt.xlabel('Predicted Label')
+    plt.ylabel('True Label')
+    plt.title(f'Confusion Matrix, optimal threshold={optimal_threshold:.3f}')
+    plt.xticks([0.5, 1.5], ['Negative (0)', 'Positive (1)'])
+    plt.yticks([0.5, 1.5], ['Negative (0)', 'Positive (1)'])
+    
+    fig6_path = os.path.join(visualizations_dir, 'optimal_confusion_matrix.png')
+    plt.savefig(fig6_path, dpi=300, bbox_inches='tight')
+    viz_paths.append(fig6_path)
     # Close all figures
     plt.close('all')
     
