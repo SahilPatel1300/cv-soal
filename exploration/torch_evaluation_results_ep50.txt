@@ -1,6 +1,6 @@
 === PyTorch Model Evaluation ===
 Dataset path: ../../dexnet_2.1/dexnet_2.1_eps_50/tensors/
-Timestamp: 2025-04-21 02:41:58
+Timestamp: 2025-04-21 03:17:50
 
 Using device: cuda
 Found 35 tensor files
@@ -35,53 +35,53 @@ Processed 1000 samples from file 5
 ===============================================
 1. BASIC STATISTICS
 ===============================================
-Total samples evaluated: 5000
-Positive samples: 2040 (40.80%)
-Negative samples: 2960 (59.20%)
+Total samples evaluated: 4080
+Positive samples: 2040 (50.00%)
+Negative samples: 2040 (50.00%)
 
 >> Prediction Score Distribution <<
-Mean prediction: 0.3796
-Median prediction: 0.4462
-Standard deviation: 0.3134
+Mean prediction: 0.4230
+Median prediction: 0.5570
+Standard deviation: 0.3106
 Min prediction: 0.0000
 Max prediction: 0.9663
-25th percentile: 0.0127
-75th percentile: 0.6698
+25th percentile: 0.0313
+75th percentile: 0.6891
 
 ===============================================
 2. CLASSIFICATION METRICS (at threshold=0.5)
 ===============================================
 True Positives: 1848 - (Correct positive predictions)
-True Negatives: 2424 - (Correct negative predictions)
-False Positives: 536 - (Type I error; predicted positive but actually negative)
+True Negatives: 1671 - (Correct negative predictions)
+False Positives: 369 - (Type I error; predicted positive but actually negative)
 False Negatives: 192 - (Type II error; predicted negative but actually positive)
 
 >> Standard Classification Metrics <<
-Accuracy: 0.8544 - (Proportion of correct predictions)
-Precision: 0.7752 - (TP/(TP+FP); proportion of positive predictions that are correct)
+Accuracy: 0.8625 - (Proportion of correct predictions)
+Precision: 0.8336 - (TP/(TP+FP); proportion of positive predictions that are correct)
 Recall/Sensitivity: 0.9059 - (TP/(TP+FN); proportion of actual positives correctly identified)
-Specificity: 0.8189 - (TN/(TN+FP); proportion of actual negatives correctly identified)
-F1 Score: 0.8354 - (Harmonic mean of precision and recall)
-Balanced Accuracy: 0.8624 - (Average of recall and specificity)
+Specificity: 0.8191 - (TN/(TN+FP); proportion of actual negatives correctly identified)
+F1 Score: 0.8682 - (Harmonic mean of precision and recall)
+Balanced Accuracy: 0.8625 - (Average of recall and specificity)
 
 ===============================================
 3. THRESHOLD OPTIMIZATION
 ===============================================
-Optimal threshold (maximizing F1): 0.4365
-F1 score at optimal threshold: 0.8360
+Optimal threshold (maximizing F1): 0.3590
+F1 score at optimal threshold: 0.8736
 
 >> Metrics at Optimal Threshold <<
-Accuracy: 0.8500
-Precision: 0.7553
-Recall/Sensitivity: 0.9353
-Specificity: 0.7912
+Accuracy: 0.8603
+Precision: 0.7988
+Recall/Sensitivity: 0.9632
+Specificity: 0.7574
 
 ===============================================
 4. RANKING & DISCRIMINATION METRICS
 ===============================================
-ROC AUC: 0.9254 - (Area under ROC curve; probability that a random positive is ranked higher than a random negative)
-PR AUC (Average Precision): 0.8602 - (Area under precision-recall curve; summary of precision at different recall levels)
-Log Loss: 0.3444 - (Cross-entropy loss; lower is better)
+ROC AUC: 0.9253 - (Area under ROC curve; probability that a random positive is ranked higher than a random negative)
+PR AUC (Average Precision): 0.8970 - (Area under precision-recall curve; summary of precision at different recall levels)
+Log Loss: 0.3603 - (Cross-entropy loss; lower is better)
 
 ===============================================
 6. VISUALIZATION SUMMARY

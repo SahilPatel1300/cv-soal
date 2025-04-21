@@ -11,6 +11,7 @@ from tqdm import tqdm
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from sklearn.utils import resample
 
 def run_model_evaluation(model, 
                         tensor_dir="data/training/dex-net_2.1/dexnet_2.1_eps_50/tensors",
@@ -156,9 +157,25 @@ def run_model_evaluation(model,
         
     # Convert to numpy arrays
     all_predictions = np.array(all_predictions)
-    all_ground_truth = np.array(all_ground_truth)
     all_metrics = np.array(all_metrics) if all_metrics else np.zeros_like(all_ground_truth) 
     
+    # Resample to make positive and negative classes balanced
+    all_ground_truth = np.array(all_ground_truth)
+    pos_indices = np.where(all_ground_truth == 1)[0]
+    neg_indices = np.where(all_ground_truth == 0)[0]
+    min_size = min(len(pos_indices), len(neg_indices))
+    pos_indices_down = resample(pos_indices, replace=False, n_samples=min_size, random_state=42)
+    neg_indices_down = resample(neg_indices, replace=False, n_samples=min_size, random_state=42)
+
+    # Combine balanced indices
+    balanced_indices = np.concatenate([pos_indices_down, neg_indices_down])
+    np.random.shuffle(balanced_indices)  # Shuffle for good measure
+
+    # Apply balancing
+    all_ground_truth = all_ground_truth[balanced_indices]
+    all_predictions = all_predictions[balanced_indices]
+    all_metrics = all_metrics[balanced_indices]
+
     # Check if we have enough data
     if len(all_predictions) == 0:
         output_lines.append("No prediction data was generated. Check for errors in batch processing.")
